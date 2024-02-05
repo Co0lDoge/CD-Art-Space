@@ -10,6 +10,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Button
 import androidx.compose.material3.Card
 import androidx.compose.material3.CenterAlignedTopAppBar
@@ -90,6 +92,7 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
         modifier = modifier
             .padding(16.dp)
             .fillMaxSize()
+            .verticalScroll(rememberScrollState())
     ) {
 
         // This spacer is used to push image to center
