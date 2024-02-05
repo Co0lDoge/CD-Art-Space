@@ -5,4 +5,4 @@
 
 App for displaying images on card
 
-[Screen_recording_20240205_205853.webm](https://github.com/Co0lDoge/CD-Art-Space/assets/89445763/5a88ccf1-42f0-4c14-9f32-bb076675b4a0)
+![screen_recording](https://github.com/Co0lDoge/CD-Art-Space/assets/89445763/8992414f-b374-4c5f-8770-506349009026)
