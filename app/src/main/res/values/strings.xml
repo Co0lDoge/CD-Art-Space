@@ -1,3 +1,14 @@
 <resources>
     <string name="app_name">CD Art Space</string>
+    <string name="art_title_1">Fire of the Mountain</string>
+    <string name="art_artist_1">Lucius Aetnaeus</string>
+
+    <string name="art_title_2">Smoking Shadows</string>
+    <string name="art_artist_2">Valeria Vesuviana</string>
+
+    <string name="art_title_3">Infernal Rock</string>
+    <string name="art_artist_3">Caius Calderarius</string>
+
+    <string name="art_title_4">Cursed Planes</string>
+    <string name="art_artist_4">Helena Herculana</string>
 </resources>

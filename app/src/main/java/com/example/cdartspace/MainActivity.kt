@@ -28,6 +28,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -79,6 +80,8 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
 @Composable
 fun ArtSpaceScreen(modifier: Modifier = Modifier) {
     var currentImageNum by remember { mutableIntStateOf(0) }
+
+    // This list contains the images and all related to image data.
     val imageSet = ImageData.getImagesData()
 
     Column(
@@ -97,7 +100,7 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                 .shadow(8.dp)
         ) {
             Image(
-                painter = painterResource(id = imageSet[currentImageNum].imageRes),
+                painter = painterResource(imageSet[currentImageNum].imageRes),
                 contentDescription = null,
                 modifier = modifier
                     .align(Alignment.CenterHorizontally)
@@ -118,12 +121,12 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                 .padding(16.dp)
         ) {
             Text(
-                text = "Artwork Title",
+                text = stringResource(imageSet[currentImageNum].titleRes),
                 fontSize = 26.sp,
                 fontWeight = FontWeight.Bold
             )
             Text(
-                text = "Artwork Artist"
+                text = stringResource(imageSet[currentImageNum].artistRes)
             )
 
             Row(
@@ -132,7 +135,7 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                     .padding(top = 16.dp)
             ) {
                 Button(
-                    onClick = { currentImageNum = onPreviousClick(currentImageNum, imageSet) },
+                    onClick = { currentImageNum = onPreviousClick(currentImageNum) },
                     modifier.weight(1f)
                 ) {
                     Text(text = "Previous")
@@ -153,13 +156,13 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
 
 private fun onNextClick(currentImageNum: Int, imageSet: List<ImageData>): Int {
     var newValue = currentImageNum
-    return if (currentImageNum < imageSet.size-1)
+    return if (currentImageNum < imageSet.size - 1)
         ++newValue
     else
         newValue
 }
 
-private fun onPreviousClick(currentImageNum: Int, imageSet: List<ImageData>): Int {
+private fun onPreviousClick(currentImageNum: Int): Int {
     var newValue = currentImageNum
     return if (currentImageNum > 0)
         --newValue

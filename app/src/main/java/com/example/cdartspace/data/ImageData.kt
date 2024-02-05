@@ -6,32 +6,32 @@ import com.example.cdartspace.R
 
 data class ImageData(
     @DrawableRes val imageRes: Int,
-    val titleRes: String,
-    val artistRes: String
+    val titleRes: Int,
+    val artistRes: Int
 ) {
     companion object {
         fun getImagesData(): List<ImageData> {
             return listOf(
                 ImageData(
                     R.drawable.landscape_1,
-                    "Title 1",
-                    "Artist 1"
+                    R.string.art_title_1,
+                    R.string.art_artist_1
                 ),
                 ImageData(
                     R.drawable.landscape_2,
-                    "Title 2",
-                    "Artist 2"
+                    R.string.art_title_2,
+                    R.string.art_artist_2
                 ),
                 ImageData(
                     R.drawable.landscape_3,
-                    "Title 3",
-                    "Artist 3"
+                    R.string.art_title_3,
+                    R.string.art_artist_3
                 ),
                 ImageData(
                     R.drawable.landscape_4,
-                    "Title 4",
-                    "Artist 4"
-                )
+                    R.string.art_title_4,
+                    R.string.art_artist_4
+                ),
 
             )
         }
