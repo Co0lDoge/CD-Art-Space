@@ -32,6 +32,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.cdartspace.data.ImageData
 import com.example.cdartspace.ui.theme.CDArtSpaceTheme
 
 class MainActivity : ComponentActivity() {
@@ -77,7 +78,8 @@ fun ArtSpaceApp(modifier: Modifier = Modifier) {
 
 @Composable
 fun ArtSpaceScreen(modifier: Modifier = Modifier) {
-    var currentImage by remember { mutableIntStateOf(1) }
+    var currentImageNum by remember { mutableIntStateOf(0) }
+    val imageSet = ImageData.getImagesData()
 
     Column(
         verticalArrangement = Arrangement.SpaceBetween,
@@ -95,14 +97,16 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                 .shadow(8.dp)
         ) {
             Image(
-                painter = painterResource(id = R.drawable.landscape_1),
+                painter = painterResource(id = imageSet[currentImageNum].imageRes),
                 contentDescription = null,
                 modifier = modifier
                     .align(Alignment.CenterHorizontally)
-                    .padding(top = 32.dp)
-                    .padding(bottom = 32.dp)
-                    .padding(start = 8.dp)
-                    .padding(end = 8.dp)
+                    .padding(
+                        top = 32.dp,
+                        bottom = 32.dp,
+                        start = 8.dp,
+                        end = 8.dp
+                    )
             )
         }
 
@@ -127,16 +131,40 @@ fun ArtSpaceScreen(modifier: Modifier = Modifier) {
                     .padding(bottom = 16.dp)
                     .padding(top = 16.dp)
             ) {
-                Button(onClick = { /*TODO*/ }, modifier.weight(1f)) {
+                Button(
+                    onClick = { currentImageNum = onPreviousClick(currentImageNum, imageSet) },
+                    modifier.weight(1f)
+                ) {
                     Text(text = "Previous")
                 }
+
                 Spacer(modifier.weight(0.5f))
-                Button(onClick = { /*TODO*/ }, modifier.weight(1f)) {
+
+                Button(
+                    onClick = { currentImageNum = onNextClick(currentImageNum, imageSet) },
+                    modifier.weight(1f)
+                ) {
                     Text(text = "Next")
                 }
             }
         }
     }
+}
+
+private fun onNextClick(currentImageNum: Int, imageSet: List<ImageData>): Int {
+    var newValue = currentImageNum
+    return if (currentImageNum < imageSet.size-1)
+        ++newValue
+    else
+        newValue
+}
+
+private fun onPreviousClick(currentImageNum: Int, imageSet: List<ImageData>): Int {
+    var newValue = currentImageNum
+    return if (currentImageNum > 0)
+        --newValue
+    else
+        newValue
 }
 
 @Preview(showBackground = true)
